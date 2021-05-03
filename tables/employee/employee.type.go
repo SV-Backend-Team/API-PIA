@@ -20,7 +20,7 @@ type Employee struct {
 	HomePhone       sql.NullString `gorm:"column:HomePhone"`
 	Extension       sql.NullString `gorm:"column:Extension"`
 	Notes           sql.NullString `gorm:"column:Notes"`
-	ReportsTo       sql.NullString `gorm:"foreignKey;column:ReportsTo"`
+	ReportsTo       sql.NullString `gorm:"foreign_Key;column:ReportsTo"`
 	PhotoPath       sql.NullString `gorm:"column:PhotoPath"`
 }
 
