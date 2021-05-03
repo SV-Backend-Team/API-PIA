@@ -6,6 +6,7 @@ import (
 	config "northwindApi/config"
 	employees "northwindApi/tables/employee"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -24,7 +25,8 @@ func main() {
 	router.HandleFunc("/api/employee/create", employees.CreateEmployee).Methods("POST")
 	router.HandleFunc("/api/employee/update", employees.UpdateEmployee).Methods("PUT")
 	router.HandleFunc("/api/employee/delete/{id}", employees.DeleteByID).Methods("DELETE")
-	err := http.ListenAndServe(":5000", router)
+	corsObj := handlers.AllowedOrigins([]string{"*"})
+	err := http.ListenAndServe(":5000", handlers.CORS(corsObj)(router))
 	if err != nil {
 		fmt.Println(err.Error())
 	}
