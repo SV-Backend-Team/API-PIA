@@ -21,6 +21,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/api/employee/findall", employees.FindAll).Methods("GET")
 	router.HandleFunc("/api/employee/search/{id}", employees.FindByID).Methods("GET")
+	router.HandleFunc("/api/employee/create", employees.CreateEmployee).Methods("POST")
 	err := http.ListenAndServe(":5000", router)
 	if err != nil {
 		fmt.Println(err.Error())

@@ -17,7 +17,6 @@ func (employeeModel EmployeeModel) FindAll() ([]Employee, error) {
 		db.Find(&employees)
 		return employees, nil
 	}
-
 }
 
 //GET{ID}
@@ -30,5 +29,19 @@ func (employeeModel EmployeeModel) FindByID(id int) (Employee, error) {
 		db.Where("EmployeeID = ?", id).Find(&employees) //Es literal el nombre de la columna
 		return employees, nil
 	}
-
 }
+
+//POST
+func (employeeModel EmployeeModel) CreateEmployee(employee *Employee) error {
+	db, err := config.DB_export.OpenDB()
+	if err != nil {
+		return err
+	} else {
+		db.Create(&employee)
+		return nil
+	}
+}
+
+//Update
+
+//Delete

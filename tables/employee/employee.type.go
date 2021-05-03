@@ -5,7 +5,7 @@ import (
 )
 
 type Employee struct {
-	EmployeeID      int            `gorm:"primaryKey;column:EmployeeID"`
+	//EmployeeID      int            `gorm:"primaryKey;column:EmployeeID"` // Usar con precaucion
 	LastName        string         `gorm:"column:LastName"`
 	FirstName       string         `gorm:"column:FirstName"`
 	Title           sql.NullString `gorm:"column:Title"`

@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//GET
 func FindAll(res http.ResponseWriter, req *http.Request) {
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.FindAll()
@@ -18,6 +19,7 @@ func FindAll(res http.ResponseWriter, req *http.Request) {
 	}
 }
 
+//GET{ID}
 func FindByID(res http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 	id := vars["id"]
@@ -31,6 +33,24 @@ func FindByID(res http.ResponseWriter, req *http.Request) {
 	}
 }
 
+//POST
+func CreateEmployee(res http.ResponseWriter, req *http.Request) {
+	var employee Employee
+	err := json.NewDecoder(req.Body).Decode(&employee)
+	if err != nil {
+		respondWithError(res, http.StatusBadRequest, err.Error())
+	} else {
+		var employeeModel EmployeeModel
+		err2 := employeeModel.CreateEmployee(&employee)
+		if err2 != nil {
+			respondWithError(res, http.StatusBadRequest, err2.Error())
+		} else {
+			respondWithJson(res, http.StatusOK, employee)
+		}
+	}
+}
+
+//RespondWith
 func respondWithError(w http.ResponseWriter, code int, msg string) {
 	respondWithJson(w, code, map[string]string{"error": msg})
 }
