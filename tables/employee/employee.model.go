@@ -43,5 +43,23 @@ func (employeeModel EmployeeModel) CreateEmployee(employee *Employee) error {
 }
 
 //Update
+func (employeeModel EmployeeModel) UpdateEmployee(employee *Employee) error {
+	db, err := config.DB_export.OpenDB()
+	if err != nil {
+		return err
+	} else {
+		db.Save(&employee)
+		return nil
+	}
+}
 
 //Delete
+func (employeeModel EmployeeModel) DeleteEmployee(employee Employee) error {
+	db, err := config.DB_export.OpenDB()
+	if err != nil {
+		return err
+	} else {
+		db.Delete(employee)
+		return nil
+	}
+}

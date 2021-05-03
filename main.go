@@ -22,6 +22,8 @@ func main() {
 	router.HandleFunc("/api/employee/findall", employees.FindAll).Methods("GET")
 	router.HandleFunc("/api/employee/search/{id}", employees.FindByID).Methods("GET")
 	router.HandleFunc("/api/employee/create", employees.CreateEmployee).Methods("POST")
+	router.HandleFunc("/api/employee/update", employees.UpdateEmployee).Methods("PUT")
+	router.HandleFunc("/api/employee/delete/{id}", employees.DeleteByID).Methods("DELETE")
 	err := http.ListenAndServe(":5000", router)
 	if err != nil {
 		fmt.Println(err.Error())
