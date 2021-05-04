@@ -1,27 +1,23 @@
 package employees
 
-import (
-	"database/sql"
-)
-
 type Employee struct {
-	EmployeeID      int            `gorm:"primary_Key;column:EmployeeID"` // Usar con precaucion
-	LastName        string         `gorm:"column:LastName"`
-	FirstName       string         `gorm:"column:FirstName"`
-	Title           sql.NullString `gorm:"column:Title"`
-	TitleOfCourtesy sql.NullString `gorm:"column:TitleOfCourtesy"`
-	BirthDate       sql.NullString `gorm:"column:BirthDate"`
-	HireDate        sql.NullString `gorm:"column:HireDate"`
-	Address         sql.NullString `gorm:"column:Address"`
-	City            sql.NullString `gorm:"column:City"`
-	Region          sql.NullString `gorm:"column:Region"`
-	PostalCode      sql.NullString `gorm:"column:PostalCode"`
-	Country         sql.NullString `gorm:"column:Country"`
-	HomePhone       sql.NullString `gorm:"column:HomePhone"`
-	Extension       sql.NullString `gorm:"column:Extension"`
-	Notes           sql.NullString `gorm:"column:Notes"`
-	ReportsTo       sql.NullString `gorm:"foreign_Key;column:ReportsTo"`
-	PhotoPath       sql.NullString `gorm:"column:PhotoPath"`
+	EmployeeID      int    `gorm:"primary_Key;column:EmployeeID"` // Usar con precaucion
+	LastName        string `gorm:"column:LastName"`
+	FirstName       string `gorm:"column:FirstName"`
+	Title           string `gorm:"column:Title"`
+	TitleOfCourtesy string `gorm:"column:TitleOfCourtesy"`
+	BirthDate       string `gorm:"column:BirthDate"`
+	HireDate        string `gorm:"column:HireDate"`
+	Address         string `gorm:"column:Address"`
+	City            string `gorm:"column:City"`
+	Region          string `gorm:"column:Region"`
+	PostalCode      string `gorm:"column:PostalCode"`
+	Country         string `gorm:"column:Country"`
+	HomePhone       string `gorm:"column:HomePhone"`
+	Extension       string `gorm:"column:Extension"`
+	Notes           string `gorm:"column:Notes"`
+	ReportsTo       string `gorm:"foreign_Key;column:ReportsTo"`
+	PhotoPath       string `gorm:"column:PhotoPath"`
 }
 
 func (employee *Employee) TableName() string { return "Employees" }
