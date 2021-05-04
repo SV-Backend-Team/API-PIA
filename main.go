@@ -25,8 +25,7 @@ func main() {
 	router.HandleFunc("/api/employee/create", employees.CreateEmployee).Methods("POST")
 	router.HandleFunc("/api/employee/update", employees.UpdateEmployee).Methods("PUT")
 	router.HandleFunc("/api/employee/delete/{id}", employees.DeleteByID).Methods("DELETE")
-	corsObj := handlers.AllowedOrigins([]string{"*"})
-	err := http.ListenAndServe(":5000", handlers.CORS(corsObj)(router))
+	err := http.ListenAndServe(":5000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Request-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router))
 	if err != nil {
 		fmt.Println(err.Error())
 	}
