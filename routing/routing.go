@@ -15,7 +15,7 @@ func Router(router *mux.Router) {
 }
 
 func employeeRoutes(router *mux.Router) {
-	router.HandleFunc("/api/employee/getemployee", employees.GetEmployees).Methods("GET")
+	router.HandleFunc("/api/employee/getemployees", employees.GetEmployees).Methods("GET")
 	router.HandleFunc("/api/employee/getemployee/{id}", employees.GetEmployeeByID).Methods("GET")
 	router.HandleFunc("/api/employee/createemployee", employees.CreateEmployee).Methods("POST")
 	router.HandleFunc("/api/employee/updateemployee", employees.UpdateEmployee).Methods("PUT")
