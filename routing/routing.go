@@ -15,11 +15,11 @@ func Router(router *mux.Router) {
 }
 
 func employeeRoutes(router *mux.Router) {
-	router.HandleFunc("/api/employee/findall", employees.FindAll).Methods("GET")
-	router.HandleFunc("/api/employee/search/{id}", employees.FindByID).Methods("GET")
-	router.HandleFunc("/api/employee/create", employees.CreateEmployee).Methods("POST")
-	router.HandleFunc("/api/employee/update", employees.UpdateEmployee).Methods("PUT")
-	router.HandleFunc("/api/employee/delete/{id}", employees.DeleteByID).Methods("DELETE")
+	router.HandleFunc("/api/employee/getemployee", employees.GetEmployees).Methods("GET")
+	router.HandleFunc("/api/employee/getemployee/{id}", employees.GetEmployeeByID).Methods("GET")
+	router.HandleFunc("/api/employee/createemployee", employees.CreateEmployee).Methods("POST")
+	router.HandleFunc("/api/employee/updateemployee", employees.UpdateEmployee).Methods("PUT")
+	router.HandleFunc("/api/employee/deleteemployee/{id}", employees.DeleteEmployeeByID).Methods("DELETE")
 }
 
 func customerRoutes(router *mux.Router) {

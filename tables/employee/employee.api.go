@@ -9,9 +9,9 @@ import (
 )
 
 //GET
-func FindAll(res http.ResponseWriter, req *http.Request) {
+func GetEmployees(res http.ResponseWriter, req *http.Request) {
 	var employeeModel EmployeeModel
-	employees, err := employeeModel.FindAll()
+	employees, err := employeeModel.GetEmployees()
 	if err != nil {
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
@@ -20,12 +20,12 @@ func FindAll(res http.ResponseWriter, req *http.Request) {
 }
 
 //GET{ID}
-func FindByID(res http.ResponseWriter, req *http.Request) {
+func GetEmployeeByID(res http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 	id := vars["id"]
 	employeeid, _ := strconv.Atoi(id)
 	var employeeModel EmployeeModel
-	employees, err := employeeModel.FindByID(employeeid)
+	employees, err := employeeModel.GetEmployeeByID(employeeid)
 	if err != nil {
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
@@ -68,12 +68,12 @@ func UpdateEmployee(res http.ResponseWriter, req *http.Request) {
 }
 
 //Delete
-func DeleteByID(res http.ResponseWriter, req *http.Request) {
+func DeleteEmployeeByID(res http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 	id := vars["id"]
 	employeeid, _ := strconv.Atoi(id)
 	var employeeModel EmployeeModel
-	employees, err := employeeModel.FindByID(employeeid)
+	employees, err := employeeModel.GetEmployeeByID(employeeid)
 	if err != nil {
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {

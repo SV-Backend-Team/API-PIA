@@ -7,7 +7,7 @@ import (
 type EmployeeModel struct{}
 
 //GET
-func (employeeModel EmployeeModel) FindAll() ([]Employee, error) {
+func (employeeModel EmployeeModel) GetEmployees() ([]Employee, error) {
 	db, err := config.DB_export.OpenDB()
 	if err != nil {
 		return nil, err
@@ -19,7 +19,7 @@ func (employeeModel EmployeeModel) FindAll() ([]Employee, error) {
 }
 
 //GET{ID}
-func (employeeModel EmployeeModel) FindByID(id int) (Employee, error) {
+func (employeeModel EmployeeModel) GetEmployeeByID(id int) (Employee, error) {
 	db, err := config.DB_export.OpenDB()
 	if err != nil {
 		return Employee{}, err
