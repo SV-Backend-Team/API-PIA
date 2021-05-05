@@ -31,9 +31,9 @@ func customerRoutes(router *mux.Router) {
 }
 
 func supplierRoutes(router *mux.Router) {
-	router.HandleFunc("/api/customer/getsuppliers", suppliers.GetSuppliers).Methods("GET")
-	router.HandleFunc("/api/customer/getsuppliers/{id}", suppliers.GetSuppliersByID).Methods("GET")
-	router.HandleFunc("/api/customer/createsupplier", suppliers.CreateSuppliers).Methods("POST")
-	router.HandleFunc("/api/customer/updatesupplier", suppliers.UpdateSupplier).Methods("PUT")
-	router.HandleFunc("/api/customer/deletesupplier/{id}", suppliers.DeleteSupplierByID).Methods("DELETE")
+	router.HandleFunc("/api/supplier/getsuppliers", suppliers.GetSuppliers).Methods("GET")
+	router.HandleFunc("/api/supplier/getsuppliers/{id}", suppliers.GetSuppliersByID).Methods("GET")
+	router.HandleFunc("/api/supplier/createsupplier", suppliers.CreateSuppliers).Methods("POST")
+	router.HandleFunc("/api/supplier/updatesupplier", suppliers.UpdateSupplier).Methods("PUT")
+	router.HandleFunc("/api/supplier/deletesupplier/{id}", suppliers.DeleteSupplierByID).Methods("DELETE")
 }
