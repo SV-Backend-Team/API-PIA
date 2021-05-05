@@ -4,8 +4,7 @@ import (
 	config "northwindApi/config"
 )
 
-type EmployeeModel struct {
-}
+type EmployeeModel struct{}
 
 //GET
 func (employeeModel EmployeeModel) FindAll() ([]Employee, error) {
