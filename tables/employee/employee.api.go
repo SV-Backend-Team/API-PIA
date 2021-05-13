@@ -2,6 +2,7 @@ package employees
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -10,10 +11,12 @@ import (
 
 //GET
 func GetEmployees(res http.ResponseWriter, req *http.Request) {
+	log.Println("select all")
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployees()
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		log.Panicln(err)
+		respondWithError(res, http.StatusInternalServerError, err.Error())
 	} else {
 		respondWithJson(res, http.StatusOK, employees)
 	}
@@ -21,13 +24,18 @@ func GetEmployees(res http.ResponseWriter, req *http.Request) {
 
 //GET{ID}
 func GetEmployeeByID(res http.ResponseWriter, req *http.Request) {
+	log.Println("select by id")
 	vars := mux.Vars(req)
 	id := vars["id"]
-	employeeid, _ := strconv.Atoi(id)
+	employeeid, err := strconv.Atoi(id)
+	if err != nil {
+		respondWithError(res, http.StatusBadRequest, err.Error())
+	}
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployeeByID(employeeid)
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		log.Panicln(err)
+		respondWithError(res, http.StatusInternalServerError, err.Error())
 	} else {
 		respondWithJson(res, http.StatusOK, employees)
 	}
@@ -35,15 +43,18 @@ func GetEmployeeByID(res http.ResponseWriter, req *http.Request) {
 
 //POST
 func CreateEmployee(res http.ResponseWriter, req *http.Request) {
+	log.Println("create")
 	var employee Employee
 	err := json.NewDecoder(req.Body).Decode(&employee)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		var employeeModel EmployeeModel
 		err2 := employeeModel.CreateEmployee(&employee)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err2.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err2.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, employee)
 		}
@@ -52,15 +63,18 @@ func CreateEmployee(res http.ResponseWriter, req *http.Request) {
 
 //Update
 func UpdateEmployee(res http.ResponseWriter, req *http.Request) {
+	log.Println("update")
 	var employee Employee
 	err := json.NewDecoder(req.Body).Decode(&employee)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		var employeeModel EmployeeModel
 		err2 := employeeModel.UpdateEmployee(&employee)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err2.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err2.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, employee)
 		}
@@ -69,17 +83,20 @@ func UpdateEmployee(res http.ResponseWriter, req *http.Request) {
 
 //Delete
 func DeleteEmployeeByID(res http.ResponseWriter, req *http.Request) {
+	log.Println("delete")
 	vars := mux.Vars(req)
 	id := vars["id"]
 	employeeid, _ := strconv.Atoi(id)
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployeeByID(employeeid)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		err2 := employeeModel.DeleteEmployee(employees)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, employees)
 		}

@@ -2,6 +2,7 @@ package suppliers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -10,10 +11,12 @@ import (
 
 //GET
 func GetSuppliers(res http.ResponseWriter, req *http.Request) {
+	log.Println("select all")
 	var supplierModel SupplierModel
 	suppliers, err := supplierModel.GetSuppliers()
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		log.Panicln(err)
+		respondWithError(res, http.StatusInternalServerError, err.Error())
 	} else {
 		respondWithJson(res, http.StatusOK, suppliers)
 	}
@@ -21,13 +24,19 @@ func GetSuppliers(res http.ResponseWriter, req *http.Request) {
 
 //GET{ID}
 func GetSuppliersByID(res http.ResponseWriter, req *http.Request) {
+	log.Println("select by id")
 	vars := mux.Vars(req)
 	id := vars["id"]
-	supplierid, _ := strconv.Atoi(id)
+	supplierid, err := strconv.Atoi(id)
+	if err != nil {
+		log.Panicln(err)
+		respondWithError(res, http.StatusBadRequest, err.Error())
+	}
 	var supplierModel SupplierModel
 	suppliers, err := supplierModel.GetSupplierByID(supplierid)
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		log.Panicln(err)
+		respondWithError(res, http.StatusInternalServerError, err.Error())
 	} else {
 		respondWithJson(res, http.StatusOK, suppliers)
 	}
@@ -35,15 +44,18 @@ func GetSuppliersByID(res http.ResponseWriter, req *http.Request) {
 
 //POST
 func CreateSuppliers(res http.ResponseWriter, req *http.Request) {
+	log.Println("create")
 	var supplier Supplier
 	err := json.NewDecoder(req.Body).Decode(&supplier)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		var supplierModel SupplierModel
 		err2 := supplierModel.CreateSuppliers(&supplier)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err2.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err2.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, supplier)
 		}
@@ -52,15 +64,18 @@ func CreateSuppliers(res http.ResponseWriter, req *http.Request) {
 
 //Update
 func UpdateSupplier(res http.ResponseWriter, req *http.Request) {
+	log.Println("update")
 	var supplier Supplier
 	err := json.NewDecoder(req.Body).Decode(&supplier)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		var supplierModel SupplierModel
 		err2 := supplierModel.UpdateSupplier(&supplier)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err2.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err2.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, supplier)
 		}
@@ -69,17 +84,20 @@ func UpdateSupplier(res http.ResponseWriter, req *http.Request) {
 
 //Delete
 func DeleteSupplierByID(res http.ResponseWriter, req *http.Request) {
+	log.Println("delete")
 	vars := mux.Vars(req)
 	id := vars["id"]
 	supplierid, _ := strconv.Atoi(id)
 	var supplierModel SupplierModel
 	suppliers, err := supplierModel.GetSupplierByID(supplierid)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		err2 := supplierModel.DeleteSupplier(suppliers)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, suppliers)
 		}

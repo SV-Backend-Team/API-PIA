@@ -2,6 +2,7 @@ package customers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -9,10 +10,12 @@ import (
 
 //GET
 func GetCutomers(res http.ResponseWriter, req *http.Request) {
+	log.Println("select all")
 	var customerModel CustomerModel
 	customers, err := customerModel.GetCutomers()
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		log.Panicln(err)
+		respondWithError(res, http.StatusInternalServerError, err.Error())
 	} else {
 		respondWithJson(res, http.StatusOK, customers)
 	}
@@ -20,12 +23,14 @@ func GetCutomers(res http.ResponseWriter, req *http.Request) {
 
 //GET{ID}
 func GetCustomerByID(res http.ResponseWriter, req *http.Request) {
+	log.Println("select by id")
 	vars := mux.Vars(req)
 	id := vars["id"]
 	var customerModel CustomerModel
 	customers, err := customerModel.GetCustomerByID(id)
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		log.Panicln(err)
+		respondWithError(res, http.StatusInternalServerError, err.Error())
 	} else {
 		respondWithJson(res, http.StatusOK, customers)
 	}
@@ -33,15 +38,18 @@ func GetCustomerByID(res http.ResponseWriter, req *http.Request) {
 
 //POST
 func CreateCustomer(res http.ResponseWriter, req *http.Request) {
+	log.Println("create")
 	var customer Customer
 	err := json.NewDecoder(req.Body).Decode(&customer)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		var customerModel CustomerModel
 		err2 := customerModel.CreateCustomer(&customer)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err2.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err2.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, customer)
 		}
@@ -50,15 +58,18 @@ func CreateCustomer(res http.ResponseWriter, req *http.Request) {
 
 //Update
 func UpdateCustomer(res http.ResponseWriter, req *http.Request) {
+	log.Println("update")
 	var customer Customer
 	err := json.NewDecoder(req.Body).Decode(&customer)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		var customerModel CustomerModel
 		err2 := customerModel.UpdateCustomer(&customer)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err2.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err2.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, customer)
 		}
@@ -67,16 +78,19 @@ func UpdateCustomer(res http.ResponseWriter, req *http.Request) {
 
 //Delete
 func DeleteCustomerByID(res http.ResponseWriter, req *http.Request) {
+	log.Println("delete")
 	vars := mux.Vars(req)
 	id := vars["id"]
 	var customerModel CustomerModel
 	customers, err := customerModel.GetCustomerByID(id)
 	if err != nil {
+		log.Panicln(err)
 		respondWithError(res, http.StatusBadRequest, err.Error())
 	} else {
 		err2 := customerModel.DeleteCustomer(customers)
 		if err2 != nil {
-			respondWithError(res, http.StatusBadRequest, err.Error())
+			log.Panicln(err)
+			respondWithError(res, http.StatusInternalServerError, err.Error())
 		} else {
 			respondWithJson(res, http.StatusOK, customers)
 		}
