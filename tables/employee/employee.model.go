@@ -36,7 +36,8 @@ func (employeeModel EmployeeModel) CreateEmployee(employee *Employee) error {
 	if err != nil {
 		return err
 	} else {
-		db.Create(&employee)
+		// Buscar una forma de hacer select de todos los campos de forma automática(?)
+		db.Select("FirstName", "LastName").Create(&employee)
 		return nil
 	}
 }
