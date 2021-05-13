@@ -6,111 +6,93 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo/v4"
 )
 
 //GET
-func GetEmployees(res http.ResponseWriter, req *http.Request) {
+func GetEmployees(c echo.Context) error {
 	log.Println("select all")
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployees()
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusInternalServerError, err.Error())
-	} else {
-		respondWithJson(res, http.StatusOK, employees)
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
+	return c.JSON(http.StatusOK, employees)
 }
 
 //GET{ID}
-func GetEmployeeByID(res http.ResponseWriter, req *http.Request) {
+func GetEmployeeByID(c echo.Context) error {
 	log.Println("select by id")
-	vars := mux.Vars(req)
-	id := vars["id"]
+	id := c.Param("id")
 	employeeid, err := strconv.Atoi(id)
 	if err != nil {
-		respondWithError(res, http.StatusBadRequest, err.Error())
+		return c.String(http.StatusBadRequest, err.Error())
 	}
+
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployeeByID(employeeid)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusInternalServerError, err.Error())
-	} else {
-		respondWithJson(res, http.StatusOK, employees)
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
+	return c.JSON(http.StatusOK, employees)
 }
 
 //POST
-func CreateEmployee(res http.ResponseWriter, req *http.Request) {
+func CreateEmployee(c echo.Context) error {
 	log.Println("create")
 	var employee Employee
-	err := json.NewDecoder(req.Body).Decode(&employee)
+	err := json.NewDecoder(c.Request().Body).Decode(&employee)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusBadRequest, err.Error())
-	} else {
-		var employeeModel EmployeeModel
-		err2 := employeeModel.CreateEmployee(&employee)
-		if err2 != nil {
-			log.Panicln(err)
-			respondWithError(res, http.StatusInternalServerError, err2.Error())
-		} else {
-			respondWithJson(res, http.StatusOK, employee)
-		}
+		return c.String(http.StatusBadRequest, err.Error())
 	}
+
+	var employeeModel EmployeeModel
+	err = employeeModel.CreateEmployee(&employee)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, employee)
 }
 
 //Update
-func UpdateEmployee(res http.ResponseWriter, req *http.Request) {
+func UpdateEmployee(c echo.Context) error {
 	log.Println("update")
 	var employee Employee
-	err := json.NewDecoder(req.Body).Decode(&employee)
+	err := json.NewDecoder(c.Request().Body).Decode(&employee)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusBadRequest, err.Error())
-	} else {
-		var employeeModel EmployeeModel
-		err2 := employeeModel.UpdateEmployee(&employee)
-		if err2 != nil {
-			log.Panicln(err)
-			respondWithError(res, http.StatusInternalServerError, err2.Error())
-		} else {
-			respondWithJson(res, http.StatusOK, employee)
-		}
+		return c.String(http.StatusBadRequest, err.Error())
 	}
+
+	var employeeModel EmployeeModel
+	err = employeeModel.UpdateEmployee(&employee)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, employee)
 }
 
 //Delete
-func DeleteEmployeeByID(res http.ResponseWriter, req *http.Request) {
+func DeleteEmployeeByID(c echo.Context) error {
 	log.Println("delete")
-	vars := mux.Vars(req)
-	id := vars["id"]
+	id := c.Param("id")
 	employeeid, _ := strconv.Atoi(id)
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployeeByID(employeeid)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusBadRequest, err.Error())
-	} else {
-		err2 := employeeModel.DeleteEmployee(employees)
-		if err2 != nil {
-			log.Panicln(err)
-			respondWithError(res, http.StatusInternalServerError, err.Error())
-		} else {
-			respondWithJson(res, http.StatusOK, employees)
-		}
+		return c.String(http.StatusBadRequest, err.Error())
 	}
-}
 
-//RespondWith
-func respondWithError(w http.ResponseWriter, code int, msg string) {
-	respondWithJson(w, code, map[string]string{"error": msg})
-}
-
-func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
-	response, _ := json.Marshal(payload)
-	w.Header().Set("Content-Type", "applicaction/json")
-	w.WriteHeader(code)
-	w.Write(response)
+	err = employeeModel.DeleteEmployee(employees)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, employees)
 }

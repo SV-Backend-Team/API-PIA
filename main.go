@@ -1,14 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
 	config "northwindApi/config"
 	routing "northwindApi/routing"
 
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -20,14 +17,15 @@ func main() {
 		Database: "Northwind",
 	}
 
-	router := mux.NewRouter()
+	e := echo.New()
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
+	}))
 
-	routing.Router(router)
-	log.Println("starting")
+	routing.Router(e)
 
 	//CORS
-	err := http.ListenAndServe(":5000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Request-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router))
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	e.Logger.Fatal(e.Start(":5000"))
+
 }

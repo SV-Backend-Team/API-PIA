@@ -5,35 +5,36 @@ import (
 	employees "northwindApi/tables/employee"
 	suppliers "northwindApi/tables/supplier"
 
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo/v4"
 )
 
-func Router(router *mux.Router) {
-	employeeRoutes(router)
-	customerRoutes(router)
-	supplierRoutes(router)
+func Router(e *echo.Echo) {
+	r := e.Group("/api")
+	employeeRoutes(r)
+	customerRoutes(r)
+	supplierRoutes(r)
 }
 
-func employeeRoutes(router *mux.Router) {
-	router.HandleFunc("/api/employee/getemployees", employees.GetEmployees).Methods("GET")
-	router.HandleFunc("/api/employee/getemployee/{id}", employees.GetEmployeeByID).Methods("GET")
-	router.HandleFunc("/api/employee/createemployee", employees.CreateEmployee).Methods("POST")
-	router.HandleFunc("/api/employee/updateemployee", employees.UpdateEmployee).Methods("PUT")
-	router.HandleFunc("/api/employee/deleteemployee/{id}", employees.DeleteEmployeeByID).Methods("DELETE")
+func employeeRoutes(r *echo.Group) {
+	r.GET("/employee/getemployees", employees.GetEmployees)
+	r.GET("/employee/getemployee/:id", employees.GetEmployeeByID)
+	r.POST("/employee/createemployee", employees.CreateEmployee)
+	r.PUT("/employee/updateemployee", employees.UpdateEmployee)
+	r.DELETE("/employee/deleteemployee/:id", employees.DeleteEmployeeByID)
 }
 
-func customerRoutes(router *mux.Router) {
-	router.HandleFunc("/api/customer/getcustomers", customers.GetCutomers).Methods("GET")
-	router.HandleFunc("/api/customer/getcustomers/{id}", customers.GetCustomerByID).Methods("GET")
-	router.HandleFunc("/api/customer/createcustomer", customers.CreateCustomer).Methods("POST")
-	router.HandleFunc("/api/customer/updatecustomer", customers.UpdateCustomer).Methods("PUT")
-	router.HandleFunc("/api/customer/deletecustomer/{id}", customers.DeleteCustomerByID).Methods("DELETE")
+func customerRoutes(r *echo.Group) {
+	r.GET("/customer/getcustomers", customers.GetCutomers)
+	r.GET("/customer/getcustomers/:id", customers.GetCustomerByID)
+	r.POST("/customer/createcustomer", customers.CreateCustomer)
+	r.PUT("/customer/updatecustomer", customers.UpdateCustomer)
+	r.DELETE("/customer/deletecustomer/:id", customers.DeleteCustomerByID)
 }
 
-func supplierRoutes(router *mux.Router) {
-	router.HandleFunc("/api/supplier/getsuppliers", suppliers.GetSuppliers).Methods("GET")
-	router.HandleFunc("/api/supplier/getsuppliers/{id}", suppliers.GetSuppliersByID).Methods("GET")
-	router.HandleFunc("/api/supplier/createsupplier", suppliers.CreateSuppliers).Methods("POST")
-	router.HandleFunc("/api/supplier/updatesupplier", suppliers.UpdateSupplier).Methods("PUT")
-	router.HandleFunc("/api/supplier/deletesupplier/{id}", suppliers.DeleteSupplierByID).Methods("DELETE")
+func supplierRoutes(r *echo.Group) {
+	r.GET("/supplier/getsuppliers", suppliers.GetSuppliers)
+	r.GET("/supplier/getsuppliers/:id", suppliers.GetSuppliersByID)
+	r.POST("/supplier/createsupplier", suppliers.CreateSuppliers)
+	r.PUT("/supplier/updatesupplier", suppliers.UpdateSupplier)
+	r.DELETE("/supplier/deletesupplier/:id", suppliers.DeleteSupplierByID)
 }

@@ -5,106 +5,85 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo/v4"
 )
 
 //GET
-func GetCutomers(res http.ResponseWriter, req *http.Request) {
+func GetCutomers(c echo.Context) error {
 	log.Println("select all")
 	var customerModel CustomerModel
 	customers, err := customerModel.GetCutomers()
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusInternalServerError, err.Error())
-	} else {
-		respondWithJson(res, http.StatusOK, customers)
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
+	return c.JSON(http.StatusOK, customers)
 }
 
 //GET{ID}
-func GetCustomerByID(res http.ResponseWriter, req *http.Request) {
+func GetCustomerByID(c echo.Context) error {
 	log.Println("select by id")
-	vars := mux.Vars(req)
-	id := vars["id"]
+	id := c.Param("id")
 	var customerModel CustomerModel
 	customers, err := customerModel.GetCustomerByID(id)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusInternalServerError, err.Error())
-	} else {
-		respondWithJson(res, http.StatusOK, customers)
+		return c.String(http.StatusInternalServerError, err.Error())
 	}
+	return c.JSON(http.StatusOK, customers)
 }
 
 //POST
-func CreateCustomer(res http.ResponseWriter, req *http.Request) {
+func CreateCustomer(c echo.Context) error {
 	log.Println("create")
 	var customer Customer
-	err := json.NewDecoder(req.Body).Decode(&customer)
+	err := json.NewDecoder(c.Request().Body).Decode(&customer)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusBadRequest, err.Error())
-	} else {
-		var customerModel CustomerModel
-		err2 := customerModel.CreateCustomer(&customer)
-		if err2 != nil {
-			log.Panicln(err)
-			respondWithError(res, http.StatusInternalServerError, err2.Error())
-		} else {
-			respondWithJson(res, http.StatusOK, customer)
-		}
+		return c.String(http.StatusBadRequest, err.Error())
 	}
+
+	var customerModel CustomerModel
+	err = customerModel.CreateCustomer(&customer)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, customer)
 }
 
 //Update
-func UpdateCustomer(res http.ResponseWriter, req *http.Request) {
+func UpdateCustomer(c echo.Context) error {
 	log.Println("update")
 	var customer Customer
-	err := json.NewDecoder(req.Body).Decode(&customer)
+	err := json.NewDecoder(c.Request().Body).Decode(&customer)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusBadRequest, err.Error())
-	} else {
-		var customerModel CustomerModel
-		err2 := customerModel.UpdateCustomer(&customer)
-		if err2 != nil {
-			log.Panicln(err)
-			respondWithError(res, http.StatusInternalServerError, err2.Error())
-		} else {
-			respondWithJson(res, http.StatusOK, customer)
-		}
+		return c.String(http.StatusBadRequest, err.Error())
 	}
+	var customerModel CustomerModel
+	err = customerModel.UpdateCustomer(&customer)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, customer)
 }
 
 //Delete
-func DeleteCustomerByID(res http.ResponseWriter, req *http.Request) {
+func DeleteCustomerByID(c echo.Context) error {
 	log.Println("delete")
-	vars := mux.Vars(req)
-	id := vars["id"]
+	id := c.Param("id")
 	var customerModel CustomerModel
 	customers, err := customerModel.GetCustomerByID(id)
 	if err != nil {
 		log.Panicln(err)
-		respondWithError(res, http.StatusBadRequest, err.Error())
-	} else {
-		err2 := customerModel.DeleteCustomer(customers)
-		if err2 != nil {
-			log.Panicln(err)
-			respondWithError(res, http.StatusInternalServerError, err.Error())
-		} else {
-			respondWithJson(res, http.StatusOK, customers)
-		}
+		return c.String(http.StatusBadRequest, err.Error())
 	}
-}
-
-//RespondWith
-func respondWithError(w http.ResponseWriter, code int, msg string) {
-	respondWithJson(w, code, map[string]string{"error": msg})
-}
-
-func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
-	response, _ := json.Marshal(payload)
-	w.Header().Set("Content-Type", "applicaction/json")
-	w.WriteHeader(code)
-	w.Write(response)
+	err = customerModel.DeleteCustomer(customers)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, customers)
 }
