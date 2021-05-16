@@ -25,7 +25,7 @@ func employeeRoutes(r *echo.Group) {
 
 func customerRoutes(r *echo.Group) {
 	r.GET("/customer/getcustomers", customers.GetCutomers)
-	r.GET("/customer/getcustomers/:id", customers.GetCustomerByID)
+	r.GET("/customer/getcustomer/:id", customers.GetCustomerByID)
 	r.POST("/customer/createcustomer", customers.CreateCustomer)
 	r.PUT("/customer/updatecustomer", customers.UpdateCustomer)
 	r.DELETE("/customer/deletecustomer/:id", customers.DeleteCustomerByID)
@@ -33,7 +33,7 @@ func customerRoutes(r *echo.Group) {
 
 func supplierRoutes(r *echo.Group) {
 	r.GET("/supplier/getsuppliers", suppliers.GetSuppliers)
-	r.GET("/supplier/getsuppliers/:id", suppliers.GetSuppliersByID)
+	r.GET("/supplier/getsupplier/:id", suppliers.GetSuppliersByID)
 	r.POST("/supplier/createsupplier", suppliers.CreateSuppliers)
 	r.PUT("/supplier/updatesupplier", suppliers.UpdateSupplier)
 	r.DELETE("/supplier/deletesupplier/:id", suppliers.DeleteSupplierByID)
