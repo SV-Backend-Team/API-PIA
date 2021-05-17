@@ -1,7 +1,7 @@
 package employees
 
 type Employee struct {
-	EmployeeID      int    `gorm:"primary_Key;column:EmployeeID"` // Usar con precaucion
+	EmployeeID      string `gorm:"primary_Key;column:EmployeeID"` // Usar con precaucion
 	LastName        string `gorm:"column:LastName"`
 	FirstName       string `gorm:"column:FirstName"`
 	Title           string `gorm:"column:Title"`

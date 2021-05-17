@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"strconv"
+
+	//"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -21,8 +22,9 @@ func GetEmployees(c echo.Context) error {
 	return c.JSON(http.StatusOK, employees)
 }
 
+//Tarea4
 //GET{ID}
-func GetEmployeeByID(c echo.Context) error {
+/*func GetEmployeeByID(c echo.Context) error {
 	log.Println("select by id")
 	id := c.Param("id")
 	employeeid, err := strconv.Atoi(id)
@@ -32,6 +34,19 @@ func GetEmployeeByID(c echo.Context) error {
 
 	var employeeModel EmployeeModel
 	employees, err := employeeModel.GetEmployeeByID(employeeid)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, employees)
+}*/
+
+//GET{ID}
+func GetEmployeeByID(c echo.Context) error {
+	log.Println("select by id")
+	id := c.Param("id")
+	var employeeModel EmployeeModel
+	employees, err := employeeModel.GetEmployeeByID(id)
 	if err != nil {
 		log.Panicln(err)
 		return c.String(http.StatusInternalServerError, err.Error())
@@ -77,8 +92,9 @@ func UpdateEmployee(c echo.Context) error {
 	return c.JSON(http.StatusOK, employee)
 }
 
+//Tarea4
 //Delete
-func DeleteEmployeeByID(c echo.Context) error {
+/*func DeleteEmployeeByID(c echo.Context) error {
 	log.Println("delete")
 	id := c.Param("id")
 	employeeid, _ := strconv.Atoi(id)
@@ -89,6 +105,25 @@ func DeleteEmployeeByID(c echo.Context) error {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
 
+	err = employeeModel.DeleteEmployee(employees)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, employees)
+}
+*/
+
+//Delete
+func DeleteEmployeeByID(c echo.Context) error {
+	log.Println("delete")
+	id := c.Param("id")
+	var employeeModel EmployeeModel
+	employees, err := employeeModel.GetEmployeeByID(id)
+	if err != nil {
+		log.Panicln(err)
+		return c.String(http.StatusBadRequest, err.Error())
+	}
 	err = employeeModel.DeleteEmployee(employees)
 	if err != nil {
 		log.Panicln(err)
