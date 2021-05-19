@@ -19,7 +19,7 @@ func (employeeModel EmployeeModel) GetEmployees() ([]Employee, error) {
 }
 
 //GET{ID}
-func (employeeModel EmployeeModel) GetEmployeeByID(id int) (Employee, error) {
+func (employeeModel EmployeeModel) GetEmployeeByID(id string) (Employee, error) {
 	db, err := config.DB_export.OpenDB()
 	if err != nil {
 		return Employee{}, err
