@@ -16,25 +16,28 @@ func Router(e *echo.Echo) {
 }
 
 func employeeRoutes(r *echo.Group) {
-	r.GET("/employee/getemployees", employees.GetEmployees)
-	r.GET("/employee/getemployee/:id", employees.GetEmployeeByID)
-	r.POST("/employee/createemployee", employees.CreateEmployee)
-	r.PUT("/employee/updateemployee", employees.UpdateEmployee)
-	r.DELETE("/employee/deleteemployee/:id", employees.DeleteEmployeeByID)
+	r_emp := r.Group("/employee")
+	r_emp.GET("/getemployees", employees.GetEmployees)
+	r_emp.GET("/getemployee/:id", employees.GetEmployeeByID)
+	r_emp.POST("/createemployee", employees.CreateEmployee)
+	r_emp.PUT("/updateemployee", employees.UpdateEmployee)
+	r_emp.DELETE("/deleteemployee/:id", employees.DeleteEmployeeByID)
 }
 
 func customerRoutes(r *echo.Group) {
-	r.GET("/customer/getcustomers", customers.GetCutomers)
-	r.GET("/customer/getcustomer/:id", customers.GetCustomerByID)
-	r.POST("/customer/createcustomer", customers.CreateCustomer)
-	r.PUT("/customer/updatecustomer", customers.UpdateCustomer)
-	r.DELETE("/customer/deletecustomer/:id", customers.DeleteCustomerByID)
+	r_cus := r.Group("/customer")
+	r_cus.GET("/getcustomers", customers.GetCutomers)
+	r_cus.GET("/getcustomer/:id", customers.GetCustomerByID)
+	r_cus.POST("/createcustomer", customers.CreateCustomer)
+	r_cus.PUT("/updatecustomer", customers.UpdateCustomer)
+	r_cus.DELETE("/deletecustomer/:id", customers.DeleteCustomerByID)
 }
 
 func supplierRoutes(r *echo.Group) {
-	r.GET("/supplier/getsuppliers", suppliers.GetSuppliers)
-	r.GET("/supplier/getsupplier/:id", suppliers.GetSuppliersByID)
-	r.POST("/supplier/createsupplier", suppliers.CreateSuppliers)
-	r.PUT("/supplier/updatesupplier", suppliers.UpdateSupplier)
-	r.DELETE("/supplier/deletesupplier/:id", suppliers.DeleteSupplierByID)
+	r_sup := r.Group("/supplier")
+	r_sup.GET("/getsuppliers", suppliers.GetSuppliers)
+	r_sup.GET("/getsupplier/:id", suppliers.GetSuppliersByID)
+	r_sup.POST("/createsupplier", suppliers.CreateSuppliers)
+	r_sup.PUT("/updatesupplier", suppliers.UpdateSupplier)
+	r_sup.DELETE("/deletesupplier/:id", suppliers.DeleteSupplierByID)
 }
