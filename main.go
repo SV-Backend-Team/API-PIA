@@ -1,8 +1,8 @@
 package main
 
 import (
-	config "northwindApi/config"
-	routing "northwindApi/routing"
+	"northwindApi/config"
+	"northwindApi/routing"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -26,6 +26,6 @@ func main() {
 	routing.Router(e)
 
 	//CORS
-	e.Logger.Fatal(e.Start(":5000"))
+	e.Logger.Fatal(e.Start("0.0.0.0:5000"))
 
 }

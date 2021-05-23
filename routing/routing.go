@@ -1,18 +1,25 @@
 package routing
 
 import (
+	"northwindApi/jwt_config"
 	customers "northwindApi/tables/customer"
 	employees "northwindApi/tables/employee"
 	suppliers "northwindApi/tables/supplier"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
+var jconfig jwt_config.JWT_Config
+
 func Router(e *echo.Echo) {
-	r := e.Group("/api")
-	employeeRoutes(r)
-	customerRoutes(r)
-	supplierRoutes(r)
+
+	miscRoutes(e, jconfig)
+	r_api := e.Group("/api")
+	r_api.Use(middleware.JWT([]byte("6AB11EE40BC4545298064C0A739CD3CF")))
+	employeeRoutes(r_api)
+	customerRoutes(r_api)
+	supplierRoutes(r_api)
 }
 
 func employeeRoutes(r *echo.Group) {
@@ -40,4 +47,11 @@ func supplierRoutes(r *echo.Group) {
 	r_sup.POST("/createsupplier", suppliers.CreateSuppliers)
 	r_sup.PUT("/updatesupplier", suppliers.UpdateSupplier)
 	r_sup.DELETE("/deletesupplier/:id", suppliers.DeleteSupplierByID)
+}
+
+func miscRoutes(e *echo.Echo, jconfig jwt_config.JWT_Config) string {
+	var secret_str string
+	r_misc := e.Group("/misc")
+	r_misc.POST("/get-token", jconfig.GetToken)
+	return secret_str
 }
