@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "1923bc89-c7e3-40cf-863c-15b1a17d6897",
+		"name": "PostmanPIA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "GetEmployee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/employee/getemployees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"employee",
+								"getemployees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEmployeeByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/employee/getemployee/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"employee",
+								"getemployee",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"LastName\": \"Rivera\",\r\n    \"FirstName\": \"Gerardo\",\r\n    \"Title\": \"Sales\",\r\n    \"TitleOfCourtesy\": \"Mr.\",\r\n    \"BirthDate\": \"1973-07-30T00:00:00Z\",\r\n    \"HireDate\": \"2000-04-01T00:00:00Z\",\r\n    \"Address\": \"Av. Lazaro Cardenas\",\r\n    \"City\": \"Monterrey\",\r\n    \"Region\": \"MX\",\r\n    \"PostalCode\": \"98033\",\r\n    \"Country\": \"Mexico\",\r\n    \"HomePhone\": \"420\",\r\n    \"Extension\": \"6969\",\r\n    \"Notes\": \"\",\r\n    \"ReportsTo\": \"\",\r\n    \"PhotoPath\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/employee/createemployee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"employee",
+								"createemployee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"LastName\": \"Rivera\",\r\n    \"FirstName\": \"Gerardo\",\r\n    \"Title\": \"CEO\",\r\n    \"TitleOfCourtesy\": \"Dr.\",\r\n    \"BirthDate\": \"1973-07-30T00:00:00Z\",\r\n    \"HireDate\": \"2000-04-01T00:00:00Z\",\r\n    \"Address\": \"Av. Lazaro Cardenas\",\r\n    \"City\": \"Monterrey\",\r\n    \"Region\": \"MX\",\r\n    \"PostalCode\": \"98033\",\r\n    \"Country\": \"Mexico\",\r\n    \"HomePhone\": \"420\",\r\n    \"Extension\": \"6969\",\r\n    \"Notes\": \"\",\r\n    \"ReportsTo\": \"\",\r\n    \"PhotoPath\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/employee/updateemployee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"employee",
+								"updateemployee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/employee/deleteemployee/32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"employee",
+								"deleteemployee",
+								"32"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "GetCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/getcustomers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"getcustomers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomerByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/getcustomer/ANATR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"getcustomer",
+								"ANATR"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CustomerID\": \"SUSUS\",\r\n    \"CompanyName\": \"Suspicious Company\",\r\n    \"ContactName\": \"Red\",\r\n    \"ContactTitle\": \"Crewmate\",\r\n    \"Address\": \"A Distant Planet\",\r\n    \"City\": \"SpaceShip\",\r\n    \"Region\": \"Space\",\r\n    \"PostalCode\": \"696969\",\r\n    \"Country\": \"OuterSpace\",\r\n    \"Phone\": \"911\",\r\n    \"Fax\": \"420\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/createcustomer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"createcustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CustomerID\": \"SUSUS\",\r\n    \"CompanyName\": \"Totaly not a Suspicious Company\",\r\n    \"ContactName\": \"Mr.Red\",\r\n    \"ContactTitle\": \"Crewmate\",\r\n    \"Address\": \"A Distant Planet\",\r\n    \"City\": \"SpaceShip\",\r\n    \"Region\": \"Space\",\r\n    \"PostalCode\": \"696969\",\r\n    \"Country\": \"OuterSpace\",\r\n    \"Phone\": \"\",\r\n    \"Fax\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/updatecustomer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"updatecustomer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJ0ZXN0MDEifQ.v0t-O3qtB1obGwmDutFJqGnlmAShf2smf5NPz4WPNu8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/deletecustomer/SUSUS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"deletecustomer",
+								"SUSUS"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "JWT",
+			"item": [
+				{
+					"name": "GetToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:5000/misc/get-token?app=test01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"misc",
+								"get-token"
+							],
+							"query": [
+								{
+									"key": "app",
+									"value": "test01"
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
