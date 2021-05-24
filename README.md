@@ -55,6 +55,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** Ninguno
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:** 
+![image](https://user-images.githubusercontent.com/54513488/119393483-9f614380-bc96-11eb-8380-a99d6d8483ac.png)
 
 #### GetEmployeeByID
 * **Descripcion:** Devuelve en formato JSON un empleado especifico solicitado de los registros
@@ -63,6 +64,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** `id` el cual representa siempre un valor numérico positivo
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:** 
+![image](https://user-images.githubusercontent.com/54513488/119393669-d9cae080-bc96-11eb-88d0-3565ba868616.png)
 
 #### CreateEmployee
 * **Descripcion:** Crea un nuevo registro en la tabla Employees con información proveída en el Body. Al finalizar la creación devuelve un JSON CON el Empleado con su ID único.
@@ -95,6 +97,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el LastName y FirstName.
 
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119393786-041c9e00-bc97-11eb-847c-5d513ab22bf6.png)
 
 #### UpdateEmployee
 * **Descripcion:** Modifica un registro solicitado en cual se hace en el Body. En esta modificación no se puede cambiar el ID esto es inmutable.
@@ -127,6 +130,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 **Nota 2:** Los únicos datos requeridos a llenar siempre o que no pueden quedar vacíos son el LastName y FirstName.
 
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119393902-2e6e5b80-bc97-11eb-9d04-c5b06510d561.png)
 
 #### DeleteEmployee
 * **Descripcion:** Elimina un registro de la Tabla Employees esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
@@ -135,7 +139,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** `id` el cual representa siempre un valor numérico positivo
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:**
-
+![image](https://user-images.githubusercontent.com/54513488/119394048-5e1d6380-bc97-11eb-8177-dc45ad86e299.png)
 **Nota:** Cuando se pida el DELETE solo se mostrará el EmployeeID, LastName, FirstName cuando se ejecute.
 
 ### Customer
@@ -146,6 +150,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** Ninguno
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119394234-91f88900-bc97-11eb-87af-e2209f20686a.png)
 
 #### GetCustomerByID
 * **Descripcion:** Devuelve en formato JSON un customer especifico solicitado de los registros.
@@ -154,6 +159,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** `id` el cual representa siempre un valor Alfabético de 5 letras mayúsculas.
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119394341-accafd80-bc97-11eb-83c5-3b0fde1b2924.png)
 
 #### CreateCustomer
 * **Descripcion:** Crea un nuevo registro en la tabla Customers con información proveída en el Body. En donde los ID son creados y modificables pero los cuales no pueden ser idénticos a otros ya existentes.
@@ -180,6 +186,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el CustomerID y CompanyName.
 
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119394458-ccfabc80-bc97-11eb-8edb-17a0838751b6.png)
 
 #### UpdateCustomer
 * **Descripcion:** Modifica un registro solicitado en cual se hace en el Body. 
@@ -205,6 +212,8 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 **Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer.
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el CustomerID y CompanyName.
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119394595-f9163d80-bc97-11eb-8aca-6f6fdda3ea16.png)
+
 
 #### DeleteCustomer
 * **Descripcion:** Elimina un registro de la Tabla Customers esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
@@ -213,6 +222,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** `id` el cual representa siempre un valor Alfabético de 5 letras mayúsculas.
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119394725-2367fb00-bc98-11eb-803e-fce947452481.png)
 
 **Nota:** A comparación con DeleteEmployee este si mostrara todos los valores del registro borrado.
 
@@ -224,6 +234,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** Se conforma del “?app=” lo que le sigue es el token.
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:**
+![image](https://user-images.githubusercontent.com/54513488/119394833-498d9b00-bc98-11eb-860f-efcd8ba51ed8.png)
 
 **Nota:** Este Token para poder ser usado tiene que ser redimido en Parámetros de Authorization de Tipo Bearer Token.
 
