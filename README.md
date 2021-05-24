@@ -49,27 +49,27 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 
 ### Employees
 #### GetEmployees
-* Descripcion: Devuelve en formato JSON todos los empleados registrados en la tabla
-* Método HTTP del Request: GET
-* URL: `http://localhost:5000/api/employee/getemployees`
-* Parámetros del URL: Ninguno
-* Parámetros del Body: Ninguno
-* Pruebas en Postman: 
+* **Descripcion:** Devuelve en formato JSON todos los empleados registrados en la tabla
+* **Método HTTP del Request:** `GET`
+* **URL:** `http://localhost:5000/api/employee/getemployees`
+* **Parámetros del URL:** Ninguno
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:** 
 
 #### GetEmployeeByID
-* Descripcion: Devuelve en formato JSON un empleado especifico solicitado de los registros
-* Método HTTP del Request: GET
-* URL: `http://localhost:5000/api/employee/getemployee/:id`
-* Parámetros del URL: id el cual representa siempre un valor numérico positivo
-* Parámetros del Body: Ninguno
-* Pruebas en Postman: 
+* **Descripcion:** Devuelve en formato JSON un empleado especifico solicitado de los registros
+* **Método HTTP del Request:** `GET`
+* **URL:** `http://localhost:5000/api/employee/getemployee/:id`
+* **Parámetros del URL:** `id` el cual representa siempre un valor numérico positivo
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:** 
 
 #### CreateEmployee
-* Descripcion: Crea un nuevo registro en la tabla Employees con información proveída en el Body. Al finalizar la creación devuelve un JSON CON el Empleado con su ID único.
-* Método HTTP del Request: POST
-* URL: `http://localhost:5000/api/employee/createemployee`
-* Parámetros del URL: Ninguno
-* Parámetros del Body:
+* **Descripcion:** Crea un nuevo registro en la tabla Employees con información proveída en el Body. Al finalizar la creación devuelve un JSON CON el Empleado con su ID único.
+* **Método HTTP del Request:** `POST`
+* **URL:** `http://localhost:5000/api/employee/createemployee`
+* **Parámetros del URL:** Ninguno
+* **Parámetros del Body:
 ```
 {
     "EmployeeID": integer,
@@ -94,14 +94,14 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 **Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Employee.
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el LastName y FirstName.
 
-* Pruebas en Postman:
+* **Pruebas en Postman:**
 
 #### UpdateEmployee
-* Descripcion: Modifica un registro solicitado en cual se hace en el Body. En esta modificación no se puede cambiar el ID esto es inmutable.
-* Método HTTP del Request: PUT
-* URL: `http://localhost:5000/api/employee/updateemployee`
-* Parámetros del URL: Ninguno
-* Parámetros del Body:
+* **Descripcion:** Modifica un registro solicitado en cual se hace en el Body. En esta modificación no se puede cambiar el ID esto es inmutable.
+* **Método HTTP del Request:** `PUT`
+* **URL:** `http://localhost:5000/api/employee/updateemployee`
+* **Parámetros del URL:** Ninguno
+* **Parámetros del Body:**
 ```
 {
     "EmployeeID": integer,
@@ -126,26 +126,106 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 **Nota 1:** Este Formato solo imprimirá lo de Parámetros del Body en el Status 200 para ejemplificar que se cambió con éxito.
 **Nota 2:** Los únicos datos requeridos a llenar siempre o que no pueden quedar vacíos son el LastName y FirstName.
 
-* Pruebas en Postman:
+* **Pruebas en Postman:**
 
 #### DeleteEmployee
-* Descripcion: Elimina un registro de la Tabla Employees esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
-* Método HTTP del Request: DELETE
-* URL: `http://localhost:5000/api/employee/deleteemployee/:id`
-* Parámetros del URL: id el cual representa siempre un valor numérico positivo
-* Parámetros del Body: Ninguno
-* Pruebas en Postman:
+* **Descripcion:** Elimina un registro de la Tabla Employees esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
+* **Método HTTP del Request:** `DELETE`
+* **URL:** `http://localhost:5000/api/employee/deleteemployee/:id`
+* **Parámetros del URL:** `id` el cual representa siempre un valor numérico positivo
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:**
 
 **Nota:** Cuando se pida el DELETE solo se mostrará el EmployeeID, LastName, FirstName cuando se ejecute.
 
 ### Customer
-* Descripcion:
-* Método HTTP del Request:
-* URL:
-* Parámetros del URL:
-* Parámetros del Body:
-* Pruebas en Postman:
+#### GetCustomers
+* **Descripcion:** Devuelve en formato JSON todos los customers registrados en la tabla.
+* **Método HTTP del Request:** `GET`
+* **URL:** `http://localhost:5000/api/customer/getcustomers`
+* **Parámetros del URL:** Ninguno
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:**
 
+#### GetCustomerByID
+* **Descripcion:** Devuelve en formato JSON un customer especifico solicitado de los registros.
+* **Método HTTP del Request:** `GET`
+* **URL:** `http://localhost:5000/api/customer/getcustomer/:id`
+* **Parámetros del URL:** `id` el cual representa siempre un valor Alfabético de 5 letras mayúsculas.
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:**
+
+#### CreateCustomer
+* **Descripcion:** Crea un nuevo registro en la tabla Customers con información proveída en el Body. En donde los ID son creados y modificables pero los cuales no pueden ser idénticos a otros ya existentes.
+* **Método HTTP del Request:** `POST`
+* **URL:** `http://localhost:5000/api/customer/createcustomer`
+* **Parámetros del URL:** Ninguno
+* **Parámetros del Body:**
+```
+{
+    "CustomerID": string,
+    "CompanyName": string,
+    "ContactName": string,
+    "ContactTitle": string,
+    "Address": string,
+    "City": string,
+    "Region": string,
+    "PostalCode": string,
+    "Country": string,
+    "Phone": string,
+    "Fax": string
+}
+```
+**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer.
+**Nota 2:** Los únicos datos requeridos a llenar siempre son el CustomerID y CompanyName.
+
+* **Pruebas en Postman:**
+
+#### UpdateCustomer
+* **Descripcion:** Modifica un registro solicitado en cual se hace en el Body. 
+* **Método HTTP del Request:** `PUT`
+* **URL:** `http://localhost:5000/api/customer/updatecustomer`
+* **Parámetros del URL:** Ninguno
+* **Parámetros del Body:**
+```
+{
+    "CustomerID": string,
+    "CompanyName": string,
+    "ContactName": string,
+    "ContactTitle": string,
+    "Address": string,
+    "City": string,
+    "Region": string,
+    "PostalCode": string,
+    "Country": string,
+    "Phone": string,
+    "Fax": string
+}
+```
+**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer.
+**Nota 2:** Los únicos datos requeridos a llenar siempre son el CustomerID y CompanyName.
+* **Pruebas en Postman:**
+
+#### DeleteCustomer
+* **Descripcion:** Elimina un registro de la Tabla Customers esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
+* **Método HTTP del Request:** `DELETE`
+* **URL:** `http://localhost:5000/api/employee/deleteemployee/:id` 
+* **Parámetros del URL:** `id` el cual representa siempre un valor Alfabético de 5 letras mayúsculas.
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:**
+
+**Nota:** A comparación con DeleteEmployee este si mostrara todos los valores del registro borrado.
+
+### JWT
+#### CreateToken
+* **Descripcion:** Crea el token de autorización para poder usar en el resto de los Controladores.
+* **Método HTTP del Request:** `POST`
+* **URL:** `http://localhost:5000/misc/get-token?app=example`
+* **Parámetros del URL:** Se conforma del “?app=” lo que le sigue es el token.
+* **Parámetros del Body:** Ninguno
+* **Pruebas en Postman:**
+
+**Nota:** Este Token para poder ser usado tiene que ser redimido en Parámetros de Authorization de Tipo Bearer Token.
 
 
 
