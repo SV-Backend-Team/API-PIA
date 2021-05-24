@@ -31,21 +31,123 @@ Nota: Para ver como instalar el SSMS y el Server se pueden ver los siguientes vi
 ## Instalación y Run del Programa 
 1.	Para descargar el Backend ir a el siguiente enlace.
    -	Si se tiene la Consola Git hacer Git Bash en un lugar donde se desea descargar y escribir el siguiente comando: \
-`
+```
 git clone https://github.com/SV-Backend-Team/API-PIA.git
-`
+```
    -	Si no se tiene ambos Visual Studio y/o la Consola Git se puede descargar el repositorio como un Zip y instalar manualmente
  
 2.	Una vez descargado ejecutar el siguiente comando parar inicializar el programa: \
-`go run .`
+```
+go run .
+```
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54513488/119378761-3d97de00-bc84-11eb-905b-07c4c993ed6c.png">
+</p>
 
 ## Endpoints
-Todo endpoint tiene como URL inicial "http://localhost:5000" seguido de esto va dependiendo de a que registro valla dirigido o si es del JWT y dependen del método HTTP de Request que tenga. A continuación, se presenta todos los endpoints posibles en API.
+Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va dependiendo de a que registro valla dirigido o si es del JWT y dependen del método HTTP de Request que tenga. A continuación, se presenta todos los endpoints posibles en API.
+
+### Employees
+#### GetEmployees
+* Descripcion: Devuelve en formato JSON todos los empleados registrados en la tabla
+* Método HTTP del Request: GET
+* URL: `http://localhost:5000/api/employee/getemployees`
+* Parámetros del URL: Ninguno
+* Parámetros del Body: Ninguno
+* Pruebas en Postman: 
+
+#### GetEmployeeByID
+* Descripcion: Devuelve en formato JSON un empleado especifico solicitado de los registros
+* Método HTTP del Request: GET
+* URL: `http://localhost:5000/api/employee/getemployee/:id`
+* Parámetros del URL: id el cual representa siempre un valor numérico positivo
+* Parámetros del Body: Ninguno
+* Pruebas en Postman: 
+
+#### CreateEmployee
+* Descripcion: Crea un nuevo registro en la tabla Employees con información proveída en el Body. Al finalizar la creación devuelve un JSON CON el Empleado con su ID único.
+* Método HTTP del Request: POST
+* URL: `http://localhost:5000/api/employee/createemployee`
+* Parámetros del URL: Ninguno
+* Parámetros del Body:
+```
+{
+    "EmployeeID": integer,
+    "LastName": string,
+    "FirstName": string,
+    "Title": string,
+    "TitleOfCourtesy": string,
+    "BirthDate": string,
+    "HireDate": string,
+    "Address": string,
+    "City": string,
+    "Region": string,
+    "PostalCode": string,
+    "Country": string,
+    "HomePhone": string,
+    "Extension": string,
+    "Notes": string,
+    "ReportsTo": string,
+    "PhotoPath": string
+}
+```
+**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Employee.
+**Nota 2:** Los únicos datos requeridos a llenar siempre son el LastName y FirstName.
+
+* Pruebas en Postman:
+
+#### UpdateEmployee
+* Descripcion: Modifica un registro solicitado en cual se hace en el Body. En esta modificación no se puede cambiar el ID esto es inmutable.
+* Método HTTP del Request: PUT
+* URL: `http://localhost:5000/api/employee/updateemployee`
+* Parámetros del URL: Ninguno
+* Parámetros del Body:
+```
+{
+    "EmployeeID": integer,
+    "LastName": string,
+    "FirstName": string,
+    "Title": string,
+    "TitleOfCourtesy": string,
+    "BirthDate": string,
+    "HireDate": string,
+    "Address": string,
+    "City": string,
+    "Region": string,
+    "PostalCode": string,
+    "Country": string,
+    "HomePhone": string,
+    "Extension": string,
+    "Notes": string,
+    "ReportsTo": string,
+    "PhotoPath": string
+}
+```
+**Nota 1:** Este Formato solo imprimirá lo de Parámetros del Body en el Status 200 para ejemplificar que se cambió con éxito.
+**Nota 2:** Los únicos datos requeridos a llenar siempre o que no pueden quedar vacíos son el LastName y FirstName.
+
+* Pruebas en Postman:
+
+#### DeleteEmployee
+* Descripcion: Elimina un registro de la Tabla Employees esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
+* Método HTTP del Request: DELETE
+* URL: `http://localhost:5000/api/employee/deleteemployee/:id`
+* Parámetros del URL: id el cual representa siempre un valor numérico positivo
+* Parámetros del Body: Ninguno
+* Pruebas en Postman:
+
+**Nota:** Cuando se pida el DELETE solo se mostrará el EmployeeID, LastName, FirstName cuando se ejecute.
+
+### Customer
 * Descripcion:
 * Método HTTP del Request:
 * URL:
 * Parámetros del URL:
 * Parámetros del Body:
 * Pruebas en Postman:
+
+
+
+
 
 
