@@ -11,7 +11,11 @@
 ### Frontend
 *	Angular
 
+## Frontend
+Para ver como instalar el Frontend y sus requisitos ir al siguiente [enlace](https://github.com/SV-Backend-Team/Frontend-PIA).
+
 ## Instalaciones de Requisitos de Backend
+
 ### Go
 Para instalar el GO en su machina requiere ir y instalar el GO también se recomienda instalar el Visual Studio Code. 
 *	Puede instalar GO al descargar el [MS](https://golang.org/doc/install) de su página oficial. 
@@ -29,9 +33,6 @@ Nota: Para ver como instalar el SSMS y el Server se pueden ver los siguientes vi
  [![image](https://user-images.githubusercontent.com/54513488/119368259-6914cb80-bc78-11eb-8466-9e0331a3ef34.png)](https://github.com/SV-Backend-Team/API-PIA/tree/master/Base%20de%20Datos)
 
 ## Instalación y Run del Programa
-### Frontend
-Para ver como instalar el Frontend y sus requisitos ir al siguiente [enlace](https://github.com/SV-Backend-Team/Frontend-PIA).
-
 ### Backend
 1.	Para descargar el Backend ir a el siguiente [enlace](https://github.com/SV-Backend-Team/API-PIA/).
    -	Si se tiene la Consola Git hacer Git Bash en un lugar donde se desea descargar y escribir el siguiente comando: 
