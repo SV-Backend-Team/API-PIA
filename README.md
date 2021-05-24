@@ -28,7 +28,11 @@ Nota: Para ver como instalar el SSMS y el Server se pueden ver los siguientes vi
 3.	Una vez instalado estos dos recursos hay que abrir el Microsoft SQL Server Management Studio 18 y correr una vez el archivo sql que se encuentra en los archivos en especifico la carpeta Base de Datos. \
  [![image](https://user-images.githubusercontent.com/54513488/119368259-6914cb80-bc78-11eb-8466-9e0331a3ef34.png)](https://github.com/SV-Backend-Team/API-PIA/tree/master/Base%20de%20Datos)
 
-## Instalación y Run del Programa 
+## Instalación y Run del Programa
+### Frontend
+Para ver como instalar el Frontend y sus requisitos ir al siguiente [enlace](https://github.com/SV-Backend-Team/Frontend-PIA).
+
+### Backend
 1.	Para descargar el Backend ir a el siguiente [enlace](https://github.com/SV-Backend-Team/API-PIA/).
    -	Si se tiene la Consola Git hacer Git Bash en un lugar donde se desea descargar y escribir el siguiente comando: 
 ```
@@ -238,7 +242,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 
 **Nota:** Este Token para poder ser usado tiene que ser redimido en Parámetros de Authorization de Tipo Bearer Token.
 
-
-
+###Postman
+Si se quiere probar los endpoints se puede descargar el Postman Collection encontrado en el siguiente [link](https://github.com/SV-Backend-Team/API-PIA/tree/master/Postman)
 
 
