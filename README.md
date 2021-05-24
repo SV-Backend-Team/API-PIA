@@ -29,14 +29,14 @@ Nota: Para ver como instalar el SSMS y el Server se pueden ver los siguientes vi
  [![image](https://user-images.githubusercontent.com/54513488/119368259-6914cb80-bc78-11eb-8466-9e0331a3ef34.png)](https://github.com/SV-Backend-Team/API-PIA/tree/master/Base%20de%20Datos)
 
 ## Instalación y Run del Programa 
-1.	Para descargar el Backend ir a el siguiente enlace.
-   -	Si se tiene la Consola Git hacer Git Bash en un lugar donde se desea descargar y escribir el siguiente comando: \
+1.	Para descargar el Backend ir a el siguiente [enlace](https://github.com/SV-Backend-Team/API-PIA/).
+   -	Si se tiene la Consola Git hacer Git Bash en un lugar donde se desea descargar y escribir el siguiente comando: 
 ```
 git clone https://github.com/SV-Backend-Team/API-PIA.git
 ```
    -	Si no se tiene ambos Visual Studio y/o la Consola Git se puede descargar el repositorio como un Zip y instalar manualmente
  
-2.	Una vez descargado ejecutar el siguiente comando parar inicializar el programa: \
+2.	Una vez descargado ejecutar el siguiente comando parar inicializar el programa: 
 ```
 go run .
 ```
