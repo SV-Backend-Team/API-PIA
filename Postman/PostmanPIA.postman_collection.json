@@ -130,7 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"LastName\": \"Rivera\",\r\n    \"FirstName\": \"Gerardo\",\r\n    \"Title\": \"CEO\",\r\n    \"TitleOfCourtesy\": \"Dr.\",\r\n    \"BirthDate\": \"1973-07-30T00:00:00Z\",\r\n    \"HireDate\": \"2000-04-01T00:00:00Z\",\r\n    \"Address\": \"Av. Lazaro Cardenas\",\r\n    \"City\": \"Monterrey\",\r\n    \"Region\": \"MX\",\r\n    \"PostalCode\": \"98033\",\r\n    \"Country\": \"Mexico\",\r\n    \"HomePhone\": \"420\",\r\n    \"Extension\": \"6969\",\r\n    \"Notes\": \"\",\r\n    \"ReportsTo\": \"\",\r\n    \"PhotoPath\": \"\"\r\n}"
+							"raw": "{\r\n    \"EmployeeID\": 10,\r\n    \"LastName\": \"Rivera\",\r\n    \"FirstName\": \"Gerardo\",\r\n    \"Title\": \"CEO\",\r\n    \"TitleOfCourtesy\": \"Dr.\",\r\n    \"BirthDate\": \"1973-07-30T00:00:00Z\",\r\n    \"HireDate\": \"2000-04-01T00:00:00Z\",\r\n    \"Address\": \"Av. Lazaro Cardenas\",\r\n    \"City\": \"Monterrey\",\r\n    \"Region\": \"MX\",\r\n    \"PostalCode\": \"98033\",\r\n    \"Country\": \"Mexico\",\r\n    \"HomePhone\": \"420\",\r\n    \"Extension\": \"6969\",\r\n    \"Notes\": \"\",\r\n    \"ReportsTo\": \"\",\r\n    \"PhotoPath\": \"\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/employee/updateemployee",
@@ -164,7 +164,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/employee/deleteemployee/32",
+							"raw": "http://localhost:5000/api/employee/deleteemployee/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -174,7 +174,7 @@
 								"api",
 								"employee",
 								"deleteemployee",
-								"32"
+								"10"
 							]
 						}
 					},

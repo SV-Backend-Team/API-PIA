@@ -5,8 +5,8 @@
 ## Requisitos 
 ### Backend
 * GO 
-* Microsoft SQL Server Management Studio 18 
-*	SQL Server 2019 
+* TDM-GCC-64
+*	SQLite 
 
 ### Frontend
 *	Angular
@@ -21,16 +21,31 @@ Para instalar el GO en su machina requiere ir y instalar el GO también se recom
 *	Puede instalar GO al descargar el [MS](https://golang.org/doc/install) de su página oficial. 
 *	Puede también puede instalar el Visual Studio Code del siguiente [enlace](https://code.visualstudio.com/) si se instala tendrá que ir a la parte de Extensiones e instalar el GO extensión de la VS Code Market (para ver documentación de la extensión ir al siguiente [enlace](https://code.visualstudio.com/docs/languages/go)) para descargar el VSC ir a el siguiente [enlace](https://marketplace.visualstudio.com/items?itemName=golang.go) y para ver como instalarlo ir al siguiente [enlace](https://www.youtube.com/watch?v=MlIzFUI1QGA). 
 
+### TDM-GCC-64
+Por que es necesario el TDM-GCC-64, esta es necesario por la librería `http://github.com/mattn/go-sqlite3` instalada en GO ya que sino esta marcara error del siguiente:
+```
+# github.com/mattn/go-sqlite3
+cgo: exec gcc: exec: "gcc": executable file not found in %PATH%
+```
+Para instalar el TDM-GCC-64 siga los siguientes pasos:
+1.	Ir a el siguiente enlace y descargar él .exe.
+2.	Descargar y correr el progreso del instalador, pero tomar dato de donde se está instalando este programa.
+3.	Una vez terminado ir a variables de entorno en tu sistema 
+4.	En variables de usuario busca el Path y da click en editar.
+5.	 Agregar el dato previamente solicitado que se anotara, es decir:
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/54513488/119527124-a72bf100-bd45-11eb-8e8d-2749e93e83e1.png">
+</p>
+6. Una vez hecho eso ir a Variables de sistema y verificar que esa misma dirección se encuentra ahí es así pónganla.
+ <p align="center">
+  <img src="https://user-images.githubusercontent.com/54513488/119527186-b4e17680-bd45-11eb-8de1-5168f9632b2a.png">
+</p>
+7.	Cierre todo Terminal o Consola abierta, tal vez también sea necesario cerrar el Visual Studio Code.
+
 ### Base de Datos 
-1.	Se uso Microsoft SQL Server Management Studio 18 para esto se requiere descargar de [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15). 
-2.	Pero en adición de instalar el SQL Server 2019 donde se puede encontrar en [Download SQL Server](https://www.microsoft.com/es-mx/sql-server/sql-server-downloads). 
-Nota: Para ver como instalar el SSMS y el Server se pueden ver los siguientes videos: 
-*	Microsoft SQL Server Management Studio 18 
-    *	https://www.youtube.com/watch?v=bhC4cORjxrA  
-*	SQL Server 2019 
-    *	https://www.youtube.com/watch?v=YOaC_TyOrdk 
-3.	Una vez instalado estos dos recursos hay que abrir el Microsoft SQL Server Management Studio 18 y correr una vez el archivo sql que se encuentra en los archivos en especifico la carpeta Base de Datos. \
- [![image](https://user-images.githubusercontent.com/54513488/119368259-6914cb80-bc78-11eb-8466-9e0331a3ef34.png)](https://github.com/SV-Backend-Team/API-PIA/tree/master/Base%20de%20Datos)
+1.	Se uso SQLite para esto se requiere descargar de Downloads SQLite.
+2.	Una vez descargado el instalador deseado para el equipo apropiado se necesita correr el instalador esto aquí va dependiendo de usuario de lo que requiera de SQLite. \
+**Nota:** No es necesario instalar el SQLite para correr la API solo que se recomienda tenerla para ver como esta va agregando, actualizando, y quitando cosas conforme se ejecuta.
 
 ## Instalación y Run del Programa
 ### Backend
@@ -98,11 +113,11 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
     "PhotoPath": string
 }
 ```
-**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Employee.
+**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Employee. \
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el LastName y FirstName.
 
 * **Pruebas en Postman:**
-![image](https://user-images.githubusercontent.com/54513488/119393786-041c9e00-bc97-11eb-847c-5d513ab22bf6.png)
+![image](https://user-images.githubusercontent.com/54513488/119528130-9039ce80-bd46-11eb-9fcb-312e6cceec6e.png)
 
 #### UpdateEmployee
 * **Descripcion:** Modifica un registro solicitado en cual se hace en el Body. En esta modificación no se puede cambiar el ID esto es inmutable.
@@ -131,11 +146,11 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
     "PhotoPath": string
 }
 ```
-**Nota 1:** Este Formato solo imprimirá lo de Parámetros del Body en el Status 200 para ejemplificar que se cambió con éxito.
+**Nota 1:** Este Formato solo imprimirá lo de Parámetros del Body en el Status 200 para ejemplificar que se cambió con éxito. \
 **Nota 2:** Los únicos datos requeridos a llenar siempre o que no pueden quedar vacíos son el LastName y FirstName.
 
 * **Pruebas en Postman:**
-![image](https://user-images.githubusercontent.com/54513488/119393902-2e6e5b80-bc97-11eb-9d04-c5b06510d561.png)
+![image](https://user-images.githubusercontent.com/54513488/119528301-b2335100-bd46-11eb-8991-e48aa5cc505a.png)
 
 #### DeleteEmployee
 * **Descripcion:** Elimina un registro de la Tabla Employees esto mediante una solicitud en el parámetro del URL para saber cuál eliminar.
@@ -144,7 +159,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 * **Parámetros del URL:** `id` el cual representa siempre un valor numérico positivo
 * **Parámetros del Body:** Ninguno
 * **Pruebas en Postman:**
-![image](https://user-images.githubusercontent.com/54513488/119394048-5e1d6380-bc97-11eb-8177-dc45ad86e299.png)
+![image](https://user-images.githubusercontent.com/54513488/119528397-c37c5d80-bd46-11eb-9572-8d99dea989b4.png)
 **Nota:** Cuando se pida el DELETE solo se mostrará el EmployeeID, LastName, FirstName cuando se ejecute.
 
 ### Customer
@@ -187,7 +202,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
     "Fax": string
 }
 ```
-**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer.
+**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer. \
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el CustomerID y CompanyName.
 
 * **Pruebas en Postman:**
@@ -214,7 +229,7 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
     "Fax": string
 }
 ```
-**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer.
+**Nota 1:** Esto al ejecutar lo regresara imprimido con el Status 200 para ejemplificar que se creó con éxito el Customer. \
 **Nota 2:** Los únicos datos requeridos a llenar siempre son el CustomerID y CompanyName.
 * **Pruebas en Postman:**
 ![image](https://user-images.githubusercontent.com/54513488/119394595-f9163d80-bc97-11eb-8aca-6f6fdda3ea16.png)
@@ -243,7 +258,8 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 
 **Nota:** Este Token para poder ser usado tiene que ser redimido en Parámetros de Authorization de Tipo Bearer Token.
 
-###Postman
+### Postman
 Si se quiere probar los endpoints se puede descargar el Postman Collection encontrado en el siguiente [link](https://github.com/SV-Backend-Team/API-PIA/tree/master/Postman)
 
-
+## Probar la Aplicación
+Para ver la aplicación en acción vaya al siguiente link http://pia-dwbe.ddns.net
