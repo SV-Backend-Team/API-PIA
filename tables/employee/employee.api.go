@@ -48,7 +48,6 @@ func CreateEmployee(c echo.Context) error {
 		log.Panicln(err)
 		return c.String(http.StatusBadRequest, err.Error())
 	}
-
 	var employeeModel EmployeeModel
 	err = employeeModel.CreateEmployee(&employee)
 	if err != nil {
@@ -67,7 +66,11 @@ func UpdateEmployee(c echo.Context) error {
 		log.Panicln(err)
 		return c.String(http.StatusBadRequest, err.Error())
 	}
-
+	if employee.EmployeeID == 0 {
+		err_msg := "Debe incluir la ID"
+		log.Panicln(err_msg)
+		return c.String(http.StatusBadRequest, err_msg)
+	}
 	var employeeModel EmployeeModel
 	err = employeeModel.UpdateEmployee(&employee)
 	if err != nil {

@@ -61,6 +61,11 @@ func UpdateCustomer(c echo.Context) error {
 		log.Panicln(err)
 		return c.String(http.StatusBadRequest, err.Error())
 	}
+	if customer.CustomerID == "" {
+		err_msg := "Debe incluir la ID"
+		log.Panicln(err_msg)
+		return c.String(http.StatusBadRequest, err_msg)
+	}
 	var customerModel CustomerModel
 	err = customerModel.UpdateCustomer(&customer)
 	if err != nil {
