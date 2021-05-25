@@ -5,8 +5,8 @@
 ## Requisitos 
 ### Backend
 * GO 
-* Microsoft SQL Server Management Studio 18 
-*	SQL Server 2019 
+* TDM-GCC-64
+*	SQLite 
 
 ### Frontend
 *	Angular
