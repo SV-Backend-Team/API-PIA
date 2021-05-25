@@ -18,7 +18,7 @@ Para ver como instalar el Frontend y sus requisitos ir al siguiente [enlace](htt
 
 ### Go
 Para instalar el GO en su machina requiere ir y instalar el GO también se recomienda instalar el Visual Studio Code. 
-*	Puede instalar GO al descargar el [MS](https://golang.org/doc/install) de su página oficial. 
+*	Puede instalar GO al descargar el [MSI](https://golang.org/doc/install) de su página oficial. 
 *	Puede también puede instalar el Visual Studio Code del siguiente [enlace](https://code.visualstudio.com/) si se instala tendrá que ir a la parte de Extensiones e instalar el GO extensión de la VS Code Market (para ver documentación de la extensión ir al siguiente [enlace](https://code.visualstudio.com/docs/languages/go)) para descargar el VSC ir a el siguiente [enlace](https://marketplace.visualstudio.com/items?itemName=golang.go) y para ver como instalarlo ir al siguiente [enlace](https://www.youtube.com/watch?v=MlIzFUI1QGA). 
 
 ### TDM-GCC-64
