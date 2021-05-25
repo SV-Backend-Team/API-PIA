@@ -4,7 +4,8 @@ import (
 	"fmt"
 
 	"github.com/jinzhu/gorm" //ORM
-	_ "github.com/jinzhu/gorm/dialects/mssql"
+	//_ "github.com/jinzhu/gorm/dialects/mssql"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 type DB struct {
@@ -18,14 +19,14 @@ type DB struct {
 var DB_export DB
 
 func (db_connection DB) OpenDB() (*gorm.DB, error) {
-	db, err := gorm.Open("mssql", db_connection.ConnectToSQL())
+	db, err := gorm.Open("sqlite3", "Northwind.db")
 	if err != nil {
 		return nil, err
 	}
 	return db, nil
 }
 
-func (db_connection DB) ConnectToSQL() string {
+func (db_connection DB) ConnectToSQLServer() string {
 	return fmt.Sprintf("server=%s; user id=%s; password=%s; port=%d; database=%s;",
 		db_connection.User, db_connection.Password, db_connection.Server, db_connection.Port, db_connection.Database)
 }
