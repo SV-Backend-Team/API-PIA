@@ -261,4 +261,5 @@ Todo endpoint tiene como URL inicial `http://localhost:5000` seguido de esto va 
 ### Postman
 Si se quiere probar los endpoints se puede descargar el Postman Collection encontrado en el siguiente [link](https://github.com/SV-Backend-Team/API-PIA/tree/master/Postman)
 
-
+## Probar la Aplicación
+Para ver la aplicación en acción vaya al siguiente link http://pia-dwbe.ddns.net
